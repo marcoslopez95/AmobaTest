@@ -1,0 +1,3 @@
+body {
+   @apply border border-login-300 bg-login-100 text-white rounded-md px-4 py-2 m-2;
+}
