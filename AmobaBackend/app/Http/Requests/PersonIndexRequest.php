@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Response;
 use Illuminate\Validation\ValidationException;
 
-class PersonStoreRequest extends FormRequest
+class PersonIndexRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,32 +27,20 @@ class PersonStoreRequest extends FormRequest
     {
         return [
             //
-            'first_name' => 'required|string|min:3',
-            'last_name' => 'required|string|min:3',
-            'avatar' => 'required|file|mimes:jpeg,bmp,png',
-            'document' => 'required|string|unique:persons',
+            'type_person' => 'in:0,1',
+            'first_name' => 'string',
+            'last_name' => 'string'
         ];
     }
 
     public function messages()
     {
         return [
-            'required'  => 'El campo :attribute es requerido',
-            'unique'    => 'El documento ya se encuentra registrado',
+            'in'  => 'El campo :attribute solamente puede valer: :values',
             'string'    => 'El campo :attribute debe ser un string',
-            'mimes'     => 'El archivo debe ser un formato valido ( :values )',
-            'min'       => 'El :attribute debe ser mínimo :min caracteres'
         ];
     }
 
-    public function attributes()
-    {
-        return [
-            'first_name' => 'nombre',
-            'last_name' => 'apellido',
-            'avatar' => 'imagen de perfil',
-        ];
-    }
 
     protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
     {

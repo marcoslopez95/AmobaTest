@@ -4,7 +4,8 @@ namespace App\Http\Repositories;
 
 use App\Models\Person;
 
-class PersonRepository {
+class PersonRepository
+{
     protected $model;
     protected $object;
 
@@ -13,27 +14,35 @@ class PersonRepository {
         $this->model = $model;
     }
 
-    public function index($request = null){
-        return $this->model->all();
+    public function index($request = null)
+    {
+        return $this->model->filtro($request)->get();
     }
 
-    public function show($id){
-        $this->object = $this->model->find($id);
+    public function show($id)
+    {
+        $this->object = $this->model->findOrFail($id);
+        $this->object->avatar = env('APP_URL') . $this->object->ima_profile;
+        unset($this->object->ima_profile);
         return $this->object;
     }
 
-    public function store($data){
+    public function store($data)
+    {
         return $this->model->create($data);
     }
 
-    public function update($id,$data){
+    public function update($id, $data)
+    {
         self::show($id);
+        unset($this->object->avatar);
         $this->object->update($data);
         $this->object->refresh();
         return $this->object;
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         self::show($id);
         return $this->object->delete();
     }

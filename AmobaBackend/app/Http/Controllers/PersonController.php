@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PersonIndexRequest;
+use App\Http\Requests\PersonStoreRequest;
+use App\Http\Requests\PersonUpdateRequest;
 use App\Http\Services\PersonService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PersonController extends Controller
 {
@@ -18,15 +22,16 @@ class PersonController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(PersonIndexRequest $request)
     {
-        try{
-            return $this->service->index($request);
+        try {
+            $persons = $this->service->index($request);
+
+            return custom_response(true, 'Index', $persons);
         } catch (\Exception $e) {
 
             custom_Loggin($e);
-            return custom_response(false,'No se pudo guardar el registro',$e->getMessage());
-
+            return custom_response(false, 'No se pudo guardar el registro', $e->getMessage());
         }
     }
 
@@ -36,17 +41,18 @@ class PersonController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PersonStoreRequest $request)
     {
+        DB::beginTransaction();
         try {
 
-            return $this->service->store($request);
-
+            $object = $this->service->store($request);
+            DB::commit();
+            return custom_response(true, 'Guardado con éxito', $object);
         } catch (\Exception $e) {
-
+            DB::rollback();
             custom_Loggin($e);
-            return custom_response(false,'No se pudo guardar el registro',$e->getMessage());
-
+            return custom_response(false, 'No se pudo guardar el registro', $e->getMessage());
         }
     }
 
@@ -59,12 +65,12 @@ class PersonController extends Controller
     public function show($id)
     {
         try {
-            return $this->service->show($id);
+            $object = $this->service->show($id);
+            return custom_response(true, 'Show', $object);
         } catch (\Exception $e) {
 
             custom_Loggin($e);
-            return custom_response(false,'Error al consultar el registro',$e->getMessage());
-
+            return custom_response(false, 'Error al consultar el registro', $e->getMessage());
         }
         //
     }
@@ -77,15 +83,17 @@ class PersonController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PersonUpdateRequest $request, $id)
     {
-        try{
-            return $this->service->update($id,$request);
+        DB::beginTransaction();
+        try {
+            $object = $this->service->update($id, $request);
+            DB::commit();
+            return custom_response(true, 'Actualizado', $object);
         } catch (\Exception $e) {
-
+            DB::rollback();
             custom_Loggin($e);
-            return custom_response(false,'No se pudo actualizar el registro',$e->getMessage());
-
+            return custom_response(false, 'No se pudo actualizar el registro', $e->getMessage());
         }
     }
 
@@ -97,13 +105,15 @@ class PersonController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            return $this->service->delete($id);
+        DB::beginTransaction();
+        try {
+            $this->service->delete($id);
+            DB::commit();
+            return custom_response(true, 'Registro eliminado');
         } catch (\Exception $e) {
-
+            DB::rollback();
             custom_Loggin($e);
-            return custom_response(false,'No se pudo eliminar el registro',$e->getMessage());
-
+            return custom_response(false, 'No se pudo eliminar el registro', $e->getMessage());
         }
     }
 }

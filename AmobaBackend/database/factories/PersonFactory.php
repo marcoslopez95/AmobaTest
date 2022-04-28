@@ -9,8 +9,9 @@ $factory->define(Person::class, function (Faker $faker) {
     return [
         'first_name'  => $faker->firstName(),
         'last_name'   => $faker->lastName(),
-        'ima_profile' => $faker->imageUrl(),
+        'ima_profile' => $faker->word(),
         'document'    => $faker->word(),
-        'type_person' => $faker->digb ->optional(0.6,0)
+        'type_person' => $faker->randomElement(['0', '1'])
+
     ];
 });
