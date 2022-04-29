@@ -4,5 +4,5 @@
     </div>
 </template>
 <style lang="postcss" scoped>
-@import url("@/assets/template.css");
+/* @import url("@/assets/template.css"); */
 </style>

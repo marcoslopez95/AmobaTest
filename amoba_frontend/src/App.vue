@@ -14,21 +14,6 @@ export default {
 </script>
 
 <style>
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-nav {
-    padding: 30px;
+@import url('http://fonts.cdnfonts.com/css/sofia-pro');
 
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
-    }
-}
-</stylelang=>
+</style>
