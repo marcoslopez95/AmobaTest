@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="button">
+    <div id="app" class="scale-80">
         <!-- <nav>
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>

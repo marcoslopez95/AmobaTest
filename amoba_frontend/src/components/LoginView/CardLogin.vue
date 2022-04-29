@@ -1,39 +1,74 @@
 <template>
-  <div class="w-[658px] h-[591px] mt-[164px] p-[48px] mx-auto bg-gradient-to-t from-[#EEF0F6] to-white rounded-[20px]">
-      <div class="font-medium text-xl text-center text-[#3D465B]">
-          INICIAR SESIÓN
-      </div>
-      <div class="px-[48px]">
-
-      <div class=" flex justify-center py-[24px]">
-          <ico-google />
-          <ico-linkedin class="ml-[24px]"/>
-      </div>
-      <div class="flex justify-center items-center">
-          <linea-separador></linea-separador>
-          <div class="mx-[10px] w-[148.67px] text-center text-[#7C8498]">
-          o inicia con
-          </div>
-          <linea-separador></linea-separador>
-      </div>
-      </div>
-  </div>
+    <div class="
+      w-[658px]
+      h-[591px]
+      mt-[164px]
+      p-[48px]
+      mx-auto
+      bg-gradient-to-t
+      from-[#EEF0F6]
+      to-white
+      rounded-[20px]
+      drop-shadow-[0px_115px_120px_rgba(124,132,152,0.20)]
+    ">
+        <div class="font-medium text-xl text-center text-titulo">
+            INICIAR SESIÓN
+        </div>
+        <div class="px-[48px]">
+            <div class="flex justify-center py-[24px]">
+                <ico-google />
+                <ico-linkedin class="ml-[24px]" />
+            </div>
+            <div class="flex justify-center items-center h-[68px]">
+                <linea-separador></linea-separador>
+                <div class="mx-[10px] w-[148.67px] text-center text-descripcion">
+                    o inicia con
+                </div>
+                <linea-separador></linea-separador>
+            </div>
+            <div class="text-descripcion pl-[12px]">
+                Correo electrónico
+            </div>
+            <div class="py-[12px]">
+                <input 
+                    class=" border rounded-[10px] w-full drop-shadow-[0px_0px_1px_rgba(0,0,0,0.25)] h-[40px] px-[12px] py-[14px]"
+                    type="text"
+                    placeholder="Nombre"
+                />
+            </div>
+            <div class="text-descripcion pl-[12px] pt-[12px]">
+                Contraseña
+            </div>
+            <div class="py-[12px]">
+                <input 
+                    class=" border rounded-[10px] w-full drop-shadow-[0px_0px_1px_rgba(0,0,0,0.25)] h-[40px] px-[12px] py-[14px]"
+                    type="text"
+                    placeholder="Cedula"
+                />
+            </div>
+            <div class="w-full h-[90px] ">
+                <div class="h-full flex items-end ">
+                    <button-custom class="mx-auto w-[142px] ">Siguiente</button-custom>
+                </div>
+            </div>
+        </div>
+    </div>
 </template>
 
 <script>
-import IcoGoogle from './Iconos/IcoGoogle.vue'
-import IcoLinkedin from './Iconos/IcoLinkedin.vue'
-import LineaSeparador from './Iconos/LineaSeparador.vue'
+import ButtonCustom from '../Generales/ButtonCustom.vue';
+import IcoGoogle from "./Iconos/IcoGoogle.vue";
+import IcoLinkedin from "./Iconos/IcoLinkedin.vue";
+import LineaSeparador from "./Iconos/LineaSeparador.vue";
 export default {
-  components: { 
-    IcoGoogle,
-    IcoLinkedin,
-    LineaSeparador,
-},
-
-}
+    components: {
+        IcoGoogle,
+        IcoLinkedin,
+        LineaSeparador,
+        ButtonCustom,
+    },
+};
 </script>
 
 <style>
-
 </style>
