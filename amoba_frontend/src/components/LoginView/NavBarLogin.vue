@@ -2,6 +2,7 @@
   <div
     class="
       fixed
+      h-[80px]
       top-0
       bg-white
       flex

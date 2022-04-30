@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="">
         <nav-bar-login></nav-bar-login>
         <card-login></card-login>
     </div>
