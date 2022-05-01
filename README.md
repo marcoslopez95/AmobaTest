@@ -9,3 +9,12 @@
 > Cada proyecto tiene su Dockerfile, respectivo.
 
 > Me disculpo de antemano por el background, como lo hice en dos proyectos diferentes, no encontré como hacer que vue me agarre el stilo correspondiente para cada vista. Cuando aplico el background de ambas vistas, me deja sin efecto una. En laravel hubiera hecho otro blade y ya. Pero aquí no supe.
+
+## Para el front
+    > npm install && vue serve
+
+## Para el back
+    > Composer install
+    > php artisan migrate --seed
+    > php artisan passport:install
+    > php artisan serv --port 8089
