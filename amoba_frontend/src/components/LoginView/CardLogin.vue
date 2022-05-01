@@ -43,7 +43,7 @@
       </div>
       <div class="w-full py-[24px]" >
           <div class=" text-descripcion text-center ">
-              No tienes cuenta? <a class="text-bold text-[#3568F0] cursor-pointer">Regístrate</a>
+              No tienes cuenta? <a class="text-bold text-link cursor-pointer">Regístrate</a>
           </div>
       </div>
     </div>

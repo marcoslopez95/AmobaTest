@@ -1,7 +1,7 @@
 <template>
   <div
       class="
-        bg-[#3568F0]
+        bg-link
         rounded-[10px]
         text-white
         font-semibold
@@ -12,7 +12,7 @@
         flex
         items-center
         cursor-pointer
-        hover:bg-[#353cf0]
+        hover:bg-link-hover
       "
     >
       <div class="text-base"><slot></slot></div>

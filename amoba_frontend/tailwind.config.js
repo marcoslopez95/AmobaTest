@@ -4,7 +4,11 @@ module.exports = {
     extend: {
       colors:{
         descripcion:"#7C8498",
-        titulo: "#3D465B"
+        descripcion_variant: "#ACBADC",
+        titulo: "#3D465B",
+        link: "#3568F0",
+        'link-hover': "#353cf0",
+        container: "#EEF0F6"
       }
     },
     fontFamily: {
