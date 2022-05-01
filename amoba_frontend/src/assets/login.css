@@ -1,6 +1,4 @@
 body {
-    background-color:  #D7E1FC;
-    background-image: none
-    /*color: white;*/
-    
+    background-color:  #D7E1FC !important;
+    background-image: none !important
 }

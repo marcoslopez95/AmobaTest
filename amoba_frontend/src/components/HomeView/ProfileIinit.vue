@@ -11,7 +11,7 @@
         "
     >
         <div class="flex items-center">
-            <div class="text-descripcion mr-[10px]">Dr. Marcos López</div>
+            <div class="text-descripcion mr-[10px]">Dr. {{user.name}}</div>
             <configuration-icon
                 h="15"
                 w="15"
@@ -95,6 +95,9 @@ export default {
     name: "profile-init",
     components: {
         ConfigurationIcon,
+    },
+    props:{
+        user: Object
     },
     methods:{
         Logout(){

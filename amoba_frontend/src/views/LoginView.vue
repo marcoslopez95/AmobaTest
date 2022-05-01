@@ -18,10 +18,5 @@ export default {
 </script>
 
 <style scoped>
-body {
-    background-color:  #D7E1FC;
-    background-image: none;
-    /*color: white;*/
-    
-}
+@import url('../assets/login.css');
 </style>

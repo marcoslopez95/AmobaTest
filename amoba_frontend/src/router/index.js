@@ -43,10 +43,10 @@ const checkedExpired = () => {
   }
 };
 router.beforeEach(async (to, from, next) => {
- checkedExpired();
+ await checkedExpired();
 
   if (to.name !== "login" && (await !isAuthenticated()))
-    next({
+       next({
       name: "login"
     });
   else next();

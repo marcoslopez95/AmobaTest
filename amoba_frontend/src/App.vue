@@ -17,5 +17,6 @@ export default {
 </script>
 
 <style>
+
 @import url('http://fonts.cdnfonts.com/css/sofia-pro');
 </style>
