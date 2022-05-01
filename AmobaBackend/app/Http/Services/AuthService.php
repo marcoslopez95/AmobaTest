@@ -30,5 +30,15 @@ class AuthService {
         return custom_response(true,'Login',$response );
     }
 
+    public function logout()
+    {
+        Auth::user()->token()->revoke();
+
+        return custom_response(true,'Logout');
+    }
+
+    public function user(){
+        return custom_response(true,'user',Auth::user());
+    }
 
 }

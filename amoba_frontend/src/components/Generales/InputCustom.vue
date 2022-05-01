@@ -1,6 +1,6 @@
 <template>
-  <input
-          class="
+    <input
+        class="
             border
             rounded-[10px]
             w-full
@@ -9,23 +9,39 @@
             px-[12px]
             py-[14px]
             focus:outline-none
-            focus:border-sky-500 focus:ring-1 focus:ring-sky-500
-          "
-          :type="type"
-          :placeholder="placeholder"
-        />
+            focus:border-sky-500
+            focus:ring-1
+            focus:ring-sky-500
+        "
+        :type="type"
+        v-on="listeners"
+        :placeholder="placeholder"
+    />
 </template>
 
 <script>
 export default {
-    name:'input-custom',
-    props:{
-        placeholder: {type: String, default:'Ingrese...'},
-        type: {type:String,default:'text'}
-    }
-}
+    name: "input-custom",
+    props: {
+        placeholder: { type: String, default: "Ingrese..." },
+        type: { type: String, default: "text" },
+    },
+    methods: {
+        updateValue(evt) {
+            let value = evt.target.value;
+            this.$emit("input", value);
+        },
+    },
+    computed: {
+        listeners() {
+            return {
+                ...this.$listeners,
+                input: this.updateValue,
+            };
+        },
+    },
+};
 </script>
 
 <style>
-
 </style>

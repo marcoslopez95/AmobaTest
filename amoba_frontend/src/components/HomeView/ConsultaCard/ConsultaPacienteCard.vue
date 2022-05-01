@@ -18,7 +18,7 @@
             <div class="ml-[30px] flex">
                 <div class=" w-[271px]">
                     <div class="text-titulo font-semibold">
-                        Paola Marquez
+                        {{paciente.first_name}} - {{paciente.last_name}}
                     </div>
                     <div class="text-descripcion flex">
                         <div class="mr-[16px]">
@@ -29,6 +29,9 @@
                         </div>
                     </div>
                 </div>
+                <!-- 
+                    Falta Agregar el avatar al modelo en el back
+                 -->
                 <!-- Mas -->
                 <div class="my-auto ">
                     <svg width="20" height="21" viewBox="0 0 20 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -44,7 +47,9 @@
 
 <script>
 export default {
-
+    prop:{
+        paciente: Object
+    }
 }
 </script>
 

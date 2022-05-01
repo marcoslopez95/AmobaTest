@@ -10,12 +10,12 @@
 <script>
 export default {
     name: "app",
+    mounted(){
+       
+    }
 };
 </script>
 
 <style>
 @import url('http://fonts.cdnfonts.com/css/sofia-pro');
-html{
-    height: 960pxS;
-}
 </style>

@@ -10,8 +10,8 @@
 <script>
 export default {
   props: {
-    w: { type: Number, default: 30 },
-    h: { type: Number, default: 30 },
+    w: { type:String, default: '30' },
+    h: { type: String, default: '30' },
     color: { type: String, default: '#ACBADC' }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <button
       class="
         bg-link
         rounded-[10px]
@@ -32,7 +32,7 @@
           />
         </svg>
       </div>
-    </div>
+    </button>
 </template>
 
 <script>

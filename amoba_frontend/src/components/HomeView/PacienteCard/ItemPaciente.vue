@@ -1,8 +1,8 @@
 <template>
-    <div class="divide-y divide-solid">
-        <div class="px-[24px] py-[19px]">
-            <div>
-                <div class="justify-between">
+    <div class="border-t border-[#DAE1F2]">
+        <div class="px-[24px] py-[19px] flex justify-between">
+            <div class="">
+                <div class="items-center flex gap-[48px]">
                     <!-- Avatar -->
                     <div>
                         <svg
@@ -13,7 +13,12 @@
                             xmlns="http://www.w3.org/2000/svg"
                             xmlns:xlink="http://www.w3.org/1999/xlink"
                         >
-                            <circle cx="25" cy="25" r="25" fill="url(#pattern0)" />
+                            <circle
+                                cx="25"
+                                cy="25"
+                                r="25"
+                                fill="url(#pattern0)"
+                            />
                             <defs>
                                 <pattern
                                     id="pattern0"
@@ -37,25 +42,30 @@
                     </div>
 
                     <!-- Nombre -->
-                    <div class="text-titulo">
-                        Iván Fabricio Cordero Pauta
-                    </div>
+                    <div class="text-titulo">{{paciente.first_name}} {{paciente.last_name}}</div>
 
                     <!-- Documento -->
-                    <div>
-
-                    </div>
+                    <div class="text-descripcion">{{paciente.document}}</div>
                 </div>
             </div>
             <!-- Botonera -->
-            <BotoneraItemPaciente />
+            <BotoneraItemPaciente class="items-center" :id="paciente.id" />
         </div>
     </div>
 </template>
 
 <script>
 import BotoneraItemPaciente from "./ItemPaciente/BotoneraItemPaciente.vue";
-export default { components: { BotoneraItemPaciente } };
+export default { 
+    components: { BotoneraItemPaciente } ,
+props:{
+    paciente: Object
+},
+mounted(){
+    console.log('paciente',this.paciente)
+}
+};
+
 </script>
 
 <style>

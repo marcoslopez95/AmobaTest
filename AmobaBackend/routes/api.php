@@ -14,17 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('error', function (Request $e) {
     return custom_response(false, $e->error);
 })->name('error');
 
-Route::post('login', 'AuthController@Login');
+Route::middleware(['cors'])->group(function () {
 
-Route::middleware('auth:api')->group(function () {
-    Route::get('/user', 'AuthController@user');
-    Route::apiResource('persons', 'PersonController')->except([
-        'update'
-    ]);
-    Route::post('persons/{person}', 'PersonController@update');
+    Route::post('login', 'AuthController@Login');
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('logout', 'AuthController@Logout');
+        Route::get('/user', 'AuthController@user');
+        Route::apiResource('persons', 'PersonController')->except([
+            'update'
+        ]);
+        Route::post('persons/{person}', 'PersonController@update');
+    });
 });

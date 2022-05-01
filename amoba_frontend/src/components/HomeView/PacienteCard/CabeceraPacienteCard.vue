@@ -43,7 +43,7 @@
                     <div>
                         <input
                             type="text"
-                            placeholder="asd"
+                            
                             class="
                                 border-transparent
                                 bg-transparent

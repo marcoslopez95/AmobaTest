@@ -2,15 +2,17 @@
     <div class="grid grid-row-1 grid-flow-col fixed px-[24px] top-[136px] left-[614px] w-[778px] ml-[24px]">
         <div class="flex gap-5 basis-1/3">
             <PersonIcon />
-            <span>Nuevo Paciente</span>
+            <span class="text-titulo cursor-pointer hover:text-link-hover">
+                Nuevo Paciente
+            </span>
         </div>
         <div class="flex gap-5 basis-1/3">
             <ListIcon />
-            <span>Historias Clínicas</span>
+            <span class="text-link cursor-pointer hover:text-link-hover">Historias Clínicas</span>
         </div>
         <div class="flex gap-5 basis-1/3">
             <CalendarIcon />
-            <span>Agenda</span>
+            <span class="text-titulo cursor-pointer hover:text-link-hover">Agenda</span>
         </div>
     </div>
 </template>

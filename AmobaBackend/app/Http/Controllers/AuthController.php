@@ -25,7 +25,11 @@ class AuthController extends Controller
         return $this->service->Login($request->only(['email','password']));
     }
 
+    public function Logout(){
+        return $this->service->Logout();
+    }
+
     public function user(){
-        return custom_response(true,'user',Auth::user());
+        return $this->service->user();
     }
 }

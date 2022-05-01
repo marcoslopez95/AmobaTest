@@ -27,9 +27,9 @@ class PersonIndexRequest extends FormRequest
     {
         return [
             //
-            'type_person' => 'in:0,1',
-            'first_name' => 'string',
-            'last_name' => 'string'
+            'type_person' => 'in:0,1|nullable',
+            'first_name' => 'string|nullable',
+            'last_name' => 'string|nullable'
         ];
     }
 
