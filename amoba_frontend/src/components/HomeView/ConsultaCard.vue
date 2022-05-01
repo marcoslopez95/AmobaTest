@@ -12,7 +12,7 @@
         <cabecera-consulta />
         <div class="mt-[24px] overflow-y-auto h-[648px]">
             <PacienteCard
-                v-for="(paciente, i) in pacientes"
+                v-for="(paciente, i) in pacientes[0]"
                 :key="i"
                 :class="[i == 1 ? '' : 'mt-[16px]']"
                 :paciente="paciente"
@@ -29,6 +29,9 @@ export default {
     props: {
         pacientes: Array,
     },
+    mounted(){
+        console.log('p_cero',this.pacientes[0]);
+    }
 };
 </script>
 

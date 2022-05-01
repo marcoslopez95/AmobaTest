@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import { EventBus } from "@/event-bus";
 import ConfigurationIcon from "./Iconos/ConfigurationIcon.vue";
 export default {
     name: "profile-init",
@@ -97,9 +98,7 @@ export default {
     },
     methods:{
         Logout(){
-            localStorage.removeItem("token");
-            localStorage.removeItem("expired_at");
-            this.$router.push("/");
+           EventBus.$emit('logout')
         }
     }
 };

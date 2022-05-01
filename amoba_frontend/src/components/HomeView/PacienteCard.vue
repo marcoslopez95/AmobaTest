@@ -4,7 +4,7 @@
     >
         <CabeceraPacienteCard />
         <div class="overflow-y-auto h-[592px]">
-            <ItemPaciente v-for="(paciente,i) in pacientes" :key="i" :paciente="paciente" />
+            <ItemPaciente v-for="(paciente,i) in pacientes[0]" :key="i" :paciente="paciente" />
         </div>
         <div
             class="

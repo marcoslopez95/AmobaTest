@@ -163,9 +163,8 @@ export default {
             axios
                 .post(url, this.formulario)
                 .then((response) => {
-                    let data = response.data;
-                    console.log('login',data);
-                    axios.defaults.headers.common['Authorization'] = data.data.token_type +' ' + data.data.access_token;
+                    let data = response.data.data;
+                    console.log('login',data.token_type);
                     localStorage.setItem("token", data.access_token);
                     localStorage.setItem("expired_at", data.expires_at);
                     this.$router.push("/home");

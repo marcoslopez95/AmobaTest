@@ -47,8 +47,11 @@
 
 <script>
 export default {
-    prop:{
-        paciente: Object
+    props:{
+    paciente: Object
+},
+    mounted(){
+        console.log('cero',this.paciente);
     }
 }
 </script>

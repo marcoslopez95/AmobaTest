@@ -3,7 +3,6 @@
         <div class="w-[457px]">
             <div
                 class="
-                    
                     rounded-[10px]
                     border
                     shadow-[0_1px_5px_0_rgba(0,0,0,.24)]
@@ -23,6 +22,10 @@
                             outline-0
                             drop-shadow-none
                             pr-[7px]
+                            gap-[10px]
+                            w-[110px]
+                            h-[35px]
+                            mt-[-7px]
                             text-descripcion
                         "
                     >
@@ -45,6 +48,10 @@
                             type="text"
                             
                             class="
+                             h-[35px]
+                            mt-[-7px]
+                            w-[314px]
+                            rounded-[10px]
                                 border-transparent
                                 bg-transparent
                                 ring-transparent
