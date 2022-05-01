@@ -7,6 +7,7 @@
             <ItemPaciente v-for="(paciente,i) in pacientes[0]" :key="i" :paciente="paciente" />
         </div>
         <div
+        v-show="degradado"
             class="
                 right-[48px]
                 bottom-[48px]
@@ -22,12 +23,32 @@
 </template>
 
 <script>
+import { EventBus } from "@/event-bus";
 import CabeceraPacienteCard from "./PacienteCard/CabeceraPacienteCard.vue";
 import ItemPaciente from "./PacienteCard/ItemPaciente.vue";
 export default {
     components: { CabeceraPacienteCard, ItemPaciente },
     props:{
         pacientes: Array
+    },
+    data(){
+        return {
+            degradado: true,
+
+        }
+    },
+    mounted(){
+        EventBus.$on('degrad',this.ocultarDegrad)
+        EventBus.$on('show_degrad',this.mostrarDegrad)
+        
+    },
+    methods:{
+        ocultarDegrad(){
+            this.degradado = false
+        },
+        mostrarDegrad(){
+            this.degradado = true
+        }
     }
 };
 </script>

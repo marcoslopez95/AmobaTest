@@ -86,8 +86,8 @@ export default {
       }).catch((error) => {
         let e = error.response.data.data
         console.log('error_paciente_uno', e);
-        //if (error.response.status == 401) 
-        //  this.Logout()
+        if (error.response.status == 401) 
+         this.Logout()
         
       })
     }

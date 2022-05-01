@@ -47,3 +47,21 @@ if (! function_exists('custom_Loggin')) {
         Log::info($problem);
     }
 }
+
+if(! function_exists('get_extension_b64')){
+    function get_extension_b64($string,$full = null)
+    {
+        $img_extension = '';
+        preg_match("/^data:image\/(.*);base64/i",$string, $img_extension);
+        return ($full) ?  $img_extension[0] : $img_extension[1];
+    }
+
+}
+
+if(! function_exists('decode_image_b64')){
+    function decode_image_b64($img){
+        $image_service_str = substr($img, strpos($img, ",")+1);
+        $image = base64_decode($image_service_str);
+        return $image;
+    }
+}

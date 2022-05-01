@@ -15,11 +15,11 @@
             >
                 <div class="flex">
                     <select
+                    v-show="mostrar_select"
                         class="
                             border-transparent
                             bg-transparent
                             ring-transparent
-                            outline-0
                             drop-shadow-none
                             pr-[7px]
                             gap-[10px]
@@ -74,9 +74,28 @@
 </template>
 
 <script>
+import { EventBus } from "@/event-bus";
 import CompactIcon from "../Iconos/CompactIcon.vue";
 import ListIcon from "../Iconos/ListIcon.vue";
-export default { components: { CompactIcon, ListIcon } };
+export default { components: { CompactIcon, ListIcon },
+    mounted(){
+        EventBus.$on('ocultar_select',this.ocultarSelect)
+        EventBus.$on('mostrar_select',this.mostrarSelect)
+    },
+    data(){
+        return {
+            mostrar_select: true
+        }
+    },
+    methods:{
+        ocultarSelect(){
+            this.mostrar_select = false
+        },
+        mostrarSelect(){
+            this.mostrar_select = true
+        }
+    }
+};
 </script>
 
 <style>

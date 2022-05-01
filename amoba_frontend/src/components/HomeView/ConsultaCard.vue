@@ -14,7 +14,7 @@
             <PacienteCard
                 v-for="(paciente, i) in pacientes[0]"
                 :key="i"
-                :class="[i == 1 ? '' : 'mt-[16px]']"
+                :class="[i == 0 ? '' : 'mt-[16px]']"
                 :paciente="paciente"
             />
         </div>

@@ -62,7 +62,7 @@ props:{
     paciente: Object
 },
 mounted(){
-    console.log('paciente',this.paciente)
+   // console.log('paciente',this.paciente)
 }
 };
 

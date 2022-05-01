@@ -51,7 +51,7 @@ export default {
     paciente: Object
 },
     mounted(){
-        console.log('cero',this.paciente);
+       // console.log('cero',this.paciente);
     }
 }
 </script>

@@ -1,39 +1,46 @@
 <template>
-    <div class="grid grid-row-1 grid-flow-col fixed px-[24px] top-[136px] left-[614px] w-[778px] ml-[24px]">
-        <div class="flex gap-5 basis-1/3" >
+    <div
+        class="
+            grid grid-row-1 grid-flow-col
+            fixed
+            px-[24px]
+            top-[136px]
+            left-[614px]
+            w-[778px]
+            ml-[24px]
+        "
+    >
+        <div class="flex gap-5 basis-1/3">
             <PersonIcon />
-            <span class="text-titulo cursor-pointer hover:text-link-hover" data-modal-toggle="defaultModal">
+            <span
+                class="text-titulo cursor-pointer hover:text-link-hover"
+                data-modal-toggle="defaultModal"
+                @click="mostrarModal()"
+            >
                 Nuevo Paciente
             </span>
-<button class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button" data-modal-toggle="popup-modal">
-  Toggle modal
-</button>
-
-<div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 md:inset-0 h-modal md:h-full">
-    <div class="relative p-4 w-full max-w-md h-full md:h-auto">
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-            <button type="button" class="absolute top-3 right-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-800 dark:hover:text-white" data-modal-toggle="popup-modal">
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>  
-            </button>
-            <div class="p-6 text-center">
-                <svg class="mx-auto mb-4 w-14 h-14 text-gray-400 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">Are you sure you want to delete this product?</h3>
-                <button data-modal-toggle="popup-modal" type="button" class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center mr-2">
-                    Yes, I'm sure
-                </button>
-                <button data-modal-toggle="popup-modal" type="button" class="text-gray-500 bg-white hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-gray-200 rounded-lg border border-gray-200 text-sm font-medium px-5 py-2.5 hover:text-gray-900 focus:z-10 dark:bg-gray-700 dark:text-gray-300 dark:border-gray-500 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600">No, cancel</button>
-            </div>
-        </div>
-    </div>
-</div>
+            <TModal
+                v-model="show_modal"
+                :variants="variants"
+                :classes="classes"
+                :fixedClasses="fixedClasses"
+                @closed="cerrarModal()"
+                >
+                <CardCrearPaciente @cerrar="cerrarModal"/>
+                </TModal
+            >
         </div>
         <div class="flex gap-5 basis-1/3">
             <ListIcon />
-            <span class="text-link cursor-pointer hover:text-link-hover">Historias Clínicas</span>
+            <span class="text-link cursor-pointer hover:text-link-hover"
+                >Historias Clínicas</span
+            >
         </div>
         <div class="flex gap-5 basis-1/3">
             <CalendarIcon />
-            <span class="text-titulo cursor-pointer hover:text-link-hover">Agenda</span>
+            <span class="text-titulo cursor-pointer hover:text-link-hover"
+                >Agenda</span
+            >
         </div>
     </div>
 </template>
@@ -42,9 +49,72 @@
 import PersonIcon from "./Iconos/PersonIcon.vue";
 import ListIcon from "./Iconos/TablaListIcon.vue";
 import CalendarIcon from "./Iconos/CalendarIcon.vue";
+import { TModal } from "vue-tailwind/dist/components";
+import CardCrearPaciente from "./MenuPacientes/CardCrearPaciente.vue";
+import { EventBus } from "@/event-bus";
+
 export default {
-    components: { PersonIcon, ListIcon, CalendarIcon}
-}
+    components: { PersonIcon, ListIcon, CalendarIcon, TModal, CardCrearPaciente },
+    data() {
+        return {
+            show_modal: false,
+            fixedClasses: {
+                overlay:
+                    "z-40  overflow-auto scrolling-touch left-0 top-0 bottom-0 right-0 w-full h-full fixed bg-opacity-50",
+                wrapper: "relative mx-auto z-50 max-w-lg px-3 py-12",
+                modal: "overflow-visible relative  rounded",
+                body: "p-3",
+                header: "border-b p-3 rounded-t",
+                footer: " p-3 rounded-b",
+                close: "flex items-center justify-center rounded-full absolute right-0 top-0 -m-3 h-8 w-8 transition duration-100 ease-in-out focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-opacity-50",
+            },
+            classes: {
+                overlay: "bg-black",
+                wrapper: "",
+                modal: "bg-white shadow",
+                body: "p-3",
+                header: "border-gray-100",
+                footer: "bg-gray-100",
+                close: "bg-gray-100 text-gray-600 hover:bg-gray-200",
+                closeIcon: "fill-current h-4 w-4",
+                overlayEnterClass: "opacity-0",
+                overlayEnterActiveClass: "transition ease-out duration-100",
+                overlayEnterToClass: "opacity-100",
+                overlayLeaveClass: "opacity-100",
+                overlayLeaveActiveClass: "transition ease-in duration-75",
+                overlayLeaveToClass: "opacity-0",
+                enterClass: "",
+                enterActiveClass: "",
+                enterToClass: "",
+                leaveClass: "",
+                leaveActiveClass: "",
+                leaveToClass: "",
+            },
+            variants: {
+                danger: {
+                    overlay: "bg-red-100",
+                    header: "border-red-50 text-red-700",
+                    close: "bg-red-50 text-red-700 hover:bg-red-200 border-red-100 border",
+                    modal: "bg-white border border-red-100 shadow-lg",
+                    footer: "bg-red-50",
+                },
+            },
+        };
+    },
+    methods:{
+        mostrarModal(){
+            EventBus.$emit('degrad')
+            EventBus.$emit('ocultar_select')
+            this.show_modal = true
+        },
+        cerrarModal(){
+            this.show_modal = false
+            EventBus.$emit('show_degrad')
+            EventBus.$emit('mostrar_select')
+        }
+        
+    }
+};
 </script>
 
 <style>
