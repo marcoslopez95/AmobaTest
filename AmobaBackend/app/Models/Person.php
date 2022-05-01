@@ -46,8 +46,11 @@ class Person extends Model
             ->when($request->last_name, function ($query2, $last) {
                 return $query2->Where(DB::raw('upper(last_name)'), 'like', DB::raw("upper(\"%$last%\")"));
             })
-            ->when($request->type_person, function ($query2, $type) {
-                return $query2->where('type_person', $type);
-            });
+            ->when($request->type_person === '0', function ($query2) {
+                    return $query2->where('type_person', '0');
+            })
+            ->when($request->type_person === '1', function ($query2) {
+                return $query2->where('type_person', '1');
+        });
     }
 }

@@ -44,7 +44,9 @@ export default {
   mounted() {
     this.CargarCero()
     this.CargarUno()
-    EventBus.$on('logout', this.logout)
+    EventBus.$on('logout', this.Logout)
+    EventBus.$on('reload_uno', this.CargarUno)
+    EventBus.$on('filtro', this.CargarUnoFiltro)
   },
   destroyed() {
     EventBus.$off()
@@ -74,10 +76,29 @@ export default {
       })
     },
     CargarUno() {
+      this.pacientes_uno= []
       let url = 'api/persons'
       let filtro = {
         type_person: '1'
       }
+      axios.get(url, { params: filtro, headers:{
+        Authorization: 'Bearer ' + localStorage.getItem('token')
+      } }).then((response) => {
+        let data = response.data.data
+        this.pacientes_uno.push(data)
+      }).catch((error) => {
+        let e = error.response.data.data
+        console.log('error_paciente_uno', e);
+        if (error.response.status == 401) 
+         this.Logout()
+        
+      })
+    },
+    CargarUnoFiltro(filtro) {
+      this.pacientes_uno= []
+      let url = 'api/persons'
+      filtro['type_person'] = 1
+  
       axios.get(url, { params: filtro, headers:{
         Authorization: 'Bearer ' + localStorage.getItem('token')
       } }).then((response) => {

@@ -13,6 +13,7 @@
             focus:ring-1
             focus:ring-sky-500
         "
+        :value="value"
         :type="type"
         v-on="listeners"
         :placeholder="placeholder"
@@ -25,6 +26,7 @@ export default {
     props: {
         placeholder: { type: String, default: "Ingrese..." },
         type: { type: String, default: "text" },
+        value: {type: String, default: ''}
     },
     methods: {
         updateValue(evt) {

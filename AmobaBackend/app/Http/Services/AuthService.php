@@ -38,7 +38,9 @@ class AuthService {
     }
 
     public function user(){
-        return custom_response(true,'user',Auth::user());
+        $user = Auth::user();
+
+        return custom_response(true,'user',$user);
     }
 
 }

@@ -50,8 +50,8 @@ import PersonIcon from "./Iconos/PersonIcon.vue";
 import ListIcon from "./Iconos/TablaListIcon.vue";
 import CalendarIcon from "./Iconos/CalendarIcon.vue";
 import { TModal } from "vue-tailwind/dist/components";
-import CardCrearPaciente from "./MenuPacientes/CardCrearPaciente.vue";
 import { EventBus } from "@/event-bus";
+import CardCrearPaciente from "./MenuPacientes/CardCrearPaciente.vue";
 
 export default {
     components: { PersonIcon, ListIcon, CalendarIcon, TModal, CardCrearPaciente },

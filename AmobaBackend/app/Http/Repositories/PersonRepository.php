@@ -16,7 +16,12 @@ class PersonRepository
 
     public function index($request = null)
     {
-        return $this->model->filtro($request)->get();
+        $personas = $this->model->Filtro($request)->get();
+        foreach($personas as $person){
+            $person->avatar = env('APP_URL') . $person->ima_profile;
+            unset($person['ima_profile']);
+        }
+        return $personas;
     }
 
     public function show($id)

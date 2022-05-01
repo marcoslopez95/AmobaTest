@@ -157,6 +157,7 @@ export default {
             file.append("document", this.formulario.document);
             file.append("last_name", this.last_name);
             file.append("first_name", this.formulario.first_name);
+            file.append("avatar", this.formulario.avatar);
 
             axios.post(url,this.formulario,{
                 headers:{
@@ -165,6 +166,7 @@ export default {
                 } 
             }).then((response) => {
                 console.log(response);
+                EventBus.$emit('reload_uno');
                 this.$emit('cerrar')
             }).catch((error)=>{
                 let e = error.response

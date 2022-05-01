@@ -16,6 +16,7 @@
                 <div class="flex">
                     <select
                     v-show="mostrar_select"
+                    v-model="campo"
                         class="
                             border-transparent
                             bg-transparent
@@ -29,8 +30,8 @@
                             text-descripcion
                         "
                     >
-                        <option>Nombre</option>
-                        <option>Apellido</option>
+                        <option value="first_name">Nombre</option>
+                        <option value="last_name">Apellido</option>
                     </select>
                     <div class="ml-[10px]">
                         <svg
@@ -46,7 +47,7 @@
                     <div>
                         <input
                             type="text"
-                            
+                            v-model="valor"
                             class="
                              h-[35px]
                             mt-[-7px]
@@ -60,6 +61,12 @@
                                 ml-[7px]
                             "
                         />
+                    </div>
+                    <div class="hover:cursor-pointer" @click="buscar">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+</svg>
                     </div>
                 </div>
             </div>
@@ -84,7 +91,10 @@ export default { components: { CompactIcon, ListIcon },
     },
     data(){
         return {
-            mostrar_select: true
+            mostrar_select: true,
+            campo:'first_name',
+            valor: '',
+            filtro:{}
         }
     },
     methods:{
@@ -93,6 +103,10 @@ export default { components: { CompactIcon, ListIcon },
         },
         mostrarSelect(){
             this.mostrar_select = true
+        },
+        buscar(){
+            this.filtro[this.campo] = this.valor
+            EventBus.$emit('filtro',this.filtro)
         }
     }
 };
